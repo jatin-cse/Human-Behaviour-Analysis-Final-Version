@@ -309,7 +309,8 @@ This project is developed for educational and research purposes.
 
 ## 📷 Screenshots
 
-> Add screenshots of the application interface here.
+<img width="1287" height="748" alt="image" src="https://github.com/user-attachments/assets/09255565-631e-4458-be4b-9427fc9c2315" />
+
 
 Example
 
