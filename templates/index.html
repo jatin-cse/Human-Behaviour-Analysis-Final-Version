@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Human Behaviour Analysis Using EEG Signal Analysis
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- Loading Overlay -->
+<!-- ========================================= -->
+
+<div id="loadingOverlay"
+     class="loading-overlay">
+
+    <div class="loader-box">
+
+        <div class="loader"></div>
+
+        <h2>
+
+            Analyzing EEG Dataset...
+
+        </h2>
+
+        <p id="loadingText">
+
+            Uploading dataset...
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Main Application -->
+<!-- ========================================= -->
+
+<div class="app">
+
+<!-- ========================================= -->
+<!-- Navbar -->
+<!-- ========================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <i data-lucide="brain-circuit"></i>
+
+        <span>
+
+            EEG Analyzer
+
+        </span>
+
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+
+            <a href="#home">
+
+                Home
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#analysis">
+
+                Analysis
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#workflow">
+
+                How It Works
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#features">
+
+                Features
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- ========================================= -->
+<!-- Hero Section -->
+<!-- ========================================= -->
+
+<section class="hero"
+         id="home">
+
+    <div class="hero-icon">
+
+        <i data-lucide="brain-circuit"></i>
+
+    </div>
+
+    <h1>
+
+        Human Behaviour Analysis
+
+    </h1>
+
+    <h2>
+
+        Using EEG Signal Analysis
+
+    </h2>
+
+    <p>
+
+        Upload an EEG dataset, analyze it using machine learning,
+        and receive AI-powered behavioural insights instantly.
+
+    </p>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Analysis Section -->
+<!-- ========================================= -->
+
+<section class="upload-card"
+         id="analysis">
+
+<form id="predictionForm"
+      enctype="multipart/form-data">
+
+<!-- ========================================= -->
+<!-- Upload Box -->
+<!-- ========================================= -->
+
+<div class="upload-box">
+
+<div id="dropArea"
+     class="drop-area">
+
+    <i data-lucide="file-spreadsheet"
+       class="drop-icon"></i>
+
+    <h3>
+
+        Drag & Drop EEG Dataset
+
+    </h3>
+
+    <p>
+
+        or click to browse
+
+    </p>
+
+    <p class="upload-hint">
+
+        Supports:
+
+        <strong>.CSV</strong>
+
+        files only
+
+    </p>
+
+    <input
+        type="file"
+        id="csvFile"
+        name="file"
+        accept=".csv"
+        hidden
+        required>
+
+    <button
+        type="button"
+        id="browseBtn"
+        class="upload-btn">
+
+        <i data-lucide="upload"></i>
+
+        Browse CSV
+
+    </button>
+
+    <!-- Selected File -->
+
+    <div id="selectedFile"
+         class="selected-file"
+         style="display:none;">
+
+        <div class="file-info">
+
+            <div class="file-row">
+
+                <i data-lucide="file-spreadsheet"
+                   class="file-icon"></i>
+
+                <span id="file-name">
+
+                    No CSV file selected
+
+                </span>
+
+            </div>
+
+            <div class="file-meta">
+
+                <span id="file-size"></span>
+
+                <span class="ready-text">
+
+                    ✓ Ready for analysis
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            id="removeFile"
+            class="remove-file">
+
+            ✖
+
+        </button>
+
+    </div>
+
+    <!-- Upload Message -->
+
+    <div id="uploadMessage"
+         class="upload-message"></div>
+
+</div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Model Selection -->
+<!-- ========================================= -->
+
+<div class="model-box">
+
+    <label>
+
+        Select Machine Learning Model
+
+    </label>
+
+    <select
+        name="model"
+        required>
+
+        <option value="Random Forest">
+
+            Random Forest (97.04%) ★ Recommended
+
+        </option>
+
+        <option value="SVM">
+
+            Support Vector Machine (94.71%)
+
+        </option>
+
+        <option value="Logistic Regression">
+
+            Logistic Regression (93.66%)
+
+        </option>
+
+        <option value="KNN">
+
+            K-Nearest Neighbors (89.64%)
+
+        </option>
+
+        <option value="Decision Tree">
+
+            Decision Tree (87.53%)
+
+        </option>
+
+    </select>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Analyze Button -->
+<!-- ========================================= -->
+
+<button
+    type="submit"
+    id="analyzeBtn"
+    class="analyze-btn">
+
+    <i data-lucide="activity"></i>
+
+    Analyze EEG Dataset
+
+</button>
+
+</form>
+
+{% if error %}
+
+<div class="error-message">
+
+    {{ error }}
+
+</div>
+
+{% endif %}
+
+</section>
+<!-- ========================================= -->
+<!-- Results Section -->
+<!-- ========================================= -->
+
+<section id="resultsSection"
+         class="results-section"
+         style="display:none;">
+
+    <div class="results-title">
+
+        <h2>
+
+            Analysis Results
+
+        </h2>
+
+        <p>
+
+            Your EEG dataset has been successfully analyzed.
+
+        </p>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Summary Cards -->
+    <!-- ========================================= -->
+
+    <div class="result-grid">
+
+        <div class="info-card">
+
+            <h4>
+
+                Predicted Behaviour
+
+            </h4>
+
+            <h3>
+
+                <span class="prediction-badge">
+
+                    <span id="predictionResult"></span>
+
+                </span>
+
+            </h3>
+
+        </div>
+
+        <div class="info-card">
+
+            <h4>
+
+                Machine Learning Model
+
+            </h4>
+
+            <h3>
+
+                <span id="modelResult"></span>
+
+            </h3>
+
+        </div>
+
+        <div class="info-card">
+
+            <h4>
+
+                Model Accuracy
+
+            </h4>
+
+            <h3>
+
+                <span class="accuracy-badge">
+
+                    <span id="accuracyResult"></span>
+
+                </span>
+
+            </h3>
+
+        </div>
+
+        <div class="info-card">
+
+            <h4>
+
+                Dataset
+
+            </h4>
+
+            <h3>
+
+                <span id="datasetResult"></span>
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- AI Report -->
+    <!-- ========================================= -->
+
+    <div class="ai-report">
+
+        <div class="report-header">
+
+            <i data-lucide="sparkles"></i>
+
+            <h3>
+
+                AI Behaviour Report
+
+            </h3>
+
+        </div>
+
+        <div class="report-content">
+
+            <div id="reportResult"></div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Download -->
+    <!-- ========================================= -->
+<div class="download-area">
+
+    <a href="/download/csv"
+       class="download-btn">
+
+        <i data-lucide="file-spreadsheet"></i>
+
+        Export CSV
+
+    </a>
+
+    <a href="/download/pdf"
+       class="download-btn">
+
+        <i data-lucide="file-text"></i>
+
+        Export PDF
+
+    </a>
+
+</div>
+    <!-- ========================================= -->
+    <!-- Prediction Chart -->
+    <!-- ========================================= -->
+
+    <div class="chart-card">
+
+        <h3>
+
+            Prediction Distribution
+
+        </h3>
+
+        <canvas id="predictionChart"></canvas>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Confidence -->
+    <!-- ========================================= -->
+
+    <div class="confidence-card">
+
+        <h3>
+
+            Prediction Confidence
+
+        </h3>
+
+        <div id="confidenceSection"></div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Prediction History -->
+    <!-- ========================================= -->
+
+    <div class="history-card">
+
+        <div class="history-header">
+
+            <h3>
+
+                <i data-lucide="history"></i>
+
+                Prediction History
+
+            </h3>
+
+            <button
+                id="clearHistoryBtn"
+                class="clear-history">
+
+                Clear
+
+            </button>
+
+        </div>
+
+        <div id="historySection">
+
+            <p>
+
+                No prediction history available.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Workflow -->
+<!-- ========================================= -->
+
+<section class="workflow"
+         id="workflow">
+
+    <div class="section-title">
+
+        <h2>
+
+            How It Works
+
+        </h2>
+
+        <p>
+
+            Analyze EEG data in four simple steps.
+
+        </p>
+
+    </div>
+
+    <div class="workflow-container">
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+
+                1
+
+            </div>
+
+            <div class="step-icon">
+
+                <i data-lucide="cloud-upload"></i>
+
+            </div>
+
+            <h3>
+
+                Upload Dataset
+
+            </h3>
+
+            <p>
+
+                Upload your EEG dataset in CSV format.
+
+            </p>
+
+        </div>
+
+        <div class="workflow-line"></div>
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+
+                2
+
+            </div>
+
+            <div class="step-icon">
+
+                <i data-lucide="cpu"></i>
+
+            </div>
+
+            <h3>
+
+                Choose ML Model
+
+            </h3>
+
+            <p>
+
+                Select one of the trained machine learning models.
+
+            </p>
+
+        </div>
+
+        <div class="workflow-line"></div>
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+
+                3
+
+            </div>
+
+            <div class="step-icon">
+
+                <i data-lucide="brain-circuit"></i>
+
+            </div>
+
+            <h3>
+
+                Analyze EEG
+
+            </h3>
+
+            <p>
+
+                Predict the dominant mental state from EEG signals.
+
+            </p>
+
+        </div>
+
+        <div class="workflow-line"></div>
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+
+                4
+
+            </div>
+
+            <div class="step-icon">
+
+                <i data-lucide="sparkles"></i>
+
+            </div>
+
+            <h3>
+
+                AI Report
+
+            </h3>
+
+            <p>
+
+                Receive AI-generated behavioural insights and recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Features -->
+<!-- ========================================= -->
+
+<section class="features"
+         id="features">
+
+    <div class="section-title">
+
+        <h2>
+
+            Why Choose EEG Analyzer?
+
+        </h2>
+
+        <p>
+
+            Modern machine learning combined with AI-powered interpretation.
+
+        </p>
+
+    </div>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i data-lucide="shield-check"></i>
+
+            </div>
+
+            <h3>
+
+                Secure Processing
+
+            </h3>
+
+            <p>
+
+                Your uploaded EEG dataset is processed securely for prediction.
+
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i data-lucide="zap"></i>
+
+            </div>
+
+            <h3>
+
+                Fast Prediction
+
+            </h3>
+
+            <p>
+
+                Predictions are generated within seconds using trained ML models.
+
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i data-lucide="brain-circuit"></i>
+
+            </div>
+
+            <h3>
+
+                AI Behaviour Insights
+
+            </h3>
+
+            <p>
+
+                Llama 3.2 generates an easy-to-understand behavioural interpretation.
+
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i data-lucide="download"></i>
+
+            </div>
+
+            <h3>
+
+                Export Results
+
+            </h3>
+
+            <p>
+
+                Download the prediction report for future reference.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Footer -->
+<!-- ========================================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h3>
+
+            EEG Analyzer
+
+        </h3>
+
+        <p>
+            Human Behaviour Analysis Using EEG Signal Analysis
+        </p>
+        <p>
+            Flask • Machine Learning • Ollama • Llama 3.2
+        </p>
+        <p>Developed by <strong>Jatin Kumar</strong></p>
+
+    </div>
+
+</footer>
+
+<!-- ========================================= -->
+<!-- JavaScript -->
+<!-- ========================================= -->
+
+<script>
+    // ======================================
+// EEG Analyzer
+// Part 3A - Initialization & Upload
+// ======================================
+
+// =============================
+// Global Variables
+// =============================
+
+let predictionChart = null;
+
+// =============================
+// Initialize Lucide Icons
+// =============================
+
+lucide.createIcons();
+
+// =============================
+// DOM Elements
+// =============================
+
+const form = document.getElementById("predictionForm");
+
+const dropArea = document.getElementById("dropArea");
+
+const browseBtn = document.getElementById("browseBtn");
+
+const fileInput = document.getElementById("csvFile");
+
+const selectedFile = document.getElementById("selectedFile");
+
+const fileName = document.getElementById("file-name");
+
+const fileSize = document.getElementById("file-size");
+
+const removeFile = document.getElementById("removeFile");
+
+const uploadMessage = document.getElementById("uploadMessage");
+
+const overlay = document.getElementById("loadingOverlay");
+
+const loadingText = document.getElementById("loadingText");
+
+const analyzeBtn = document.getElementById("analyzeBtn");
+
+// =============================
+// Constants
+// =============================
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+// =============================
+// Upload Messages
+// =============================
+
+function showMessage(message, type) {
+
+    uploadMessage.textContent = message;
+
+    uploadMessage.className = "upload-message " + type;
+
+    uploadMessage.style.display = "block";
+
+}
+
+function clearMessage() {
+
+    uploadMessage.textContent = "";
+
+    uploadMessage.className = "upload-message";
+
+    uploadMessage.style.display = "none";
+
+}
+
+// =============================
+// Validate File
+// =============================
+
+function validateFile(file) {
+
+    if (!file) {
+
+        showMessage("Please select a CSV file.", "error");
+
+        return false;
+
+    }
+
+    if (!file.name.toLowerCase().endsWith(".csv")) {
+
+        showMessage("Only CSV files are supported.", "error");
+
+        return false;
+
+    }
+
+    const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+if (file.size > MAX_FILE_SIZE) {
+
+    showMessage("Maximum file size is 100 MB.", "error");
+
+    return false;
+
+}
+
+    return true;
+
+}
+
+// =============================
+// Display Selected File
+// =============================
+
+function showFile(file) {
+
+    if (!validateFile(file)) {
+
+        return;
+
+    }
+
+    clearMessage();
+
+    fileName.textContent = file.name;
+
+    if (file.size >= 1024 * 1024) {
+
+        fileSize.textContent =
+            (file.size / (1024 * 1024)).toFixed(2) + " MB";
+
+    } else {
+
+        fileSize.textContent =
+            (file.size / 1024).toFixed(2) + " KB";
+
+    }
+
+    selectedFile.style.display = "flex";
+
+    showMessage("CSV file selected successfully.", "success");
+
+    lucide.createIcons();
+
+}
+
+// =============================
+// Browse Button
+// =============================
+
+browseBtn.addEventListener("click", function (e) {
+
+    e.stopPropagation();
+
+    fileInput.click();
+
+});
+
+// =============================
+// Drop Area Click
+// =============================
+
+dropArea.addEventListener("click", function (e) {
+
+    if (e.target.closest("#removeFile")) {
+
+        return;
+
+    }
+
+    fileInput.click();
+
+});
+
+// =============================
+// File Input Change
+// =============================
+
+fileInput.addEventListener("change", function () {
+
+    if (fileInput.files.length) {
+
+        showFile(fileInput.files[0]);
+
+    }
+
+});
+
+// =============================
+// Drag Events
+// =============================
+
+["dragenter", "dragover"].forEach(event => {
+
+    dropArea.addEventListener(event, function (e) {
+
+        e.preventDefault();
+
+        dropArea.classList.add("dragover");
+
+    });
+
+});
+
+["dragleave", "drop"].forEach(event => {
+
+    dropArea.addEventListener(event, function (e) {
+
+        e.preventDefault();
+
+        dropArea.classList.remove("dragover");
+
+    });
+
+});
+
+// =============================
+// Drop File
+// =============================
+
+dropArea.addEventListener("drop", function (e) {
+
+    const files = e.dataTransfer.files;
+
+    if (!files.length) {
+
+        return;
+
+    }
+
+    const file = files[0];
+
+    if (!validateFile(file)) {
+
+        return;
+
+    }
+
+    const dt = new DataTransfer();
+
+    dt.items.add(file);
+
+    fileInput.files = dt.files;
+
+    showFile(file);
+
+});
+
+// =============================
+// Remove File
+// =============================
+
+removeFile.addEventListener("click", function (e) {
+
+    e.stopPropagation();
+
+    fileInput.value = "";
+
+    selectedFile.style.display = "none";
+
+    fileName.textContent = "No CSV file selected";
+
+    fileSize.textContent = "";
+
+    clearMessage();
+
+});
+// ======================================
+// EEG Analyzer
+// Part 3B - AJAX Prediction
+// ======================================
+
+// =============================
+// Submit Form
+// =============================
+
+form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    // =============================
+    // Validate Upload
+    // =============================
+
+    if (!fileInput.files.length) {
+
+        showMessage(
+            "Please upload a CSV file first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    const file = fileInput.files[0];
+
+    if (!validateFile(file)) {
+
+        return;
+
+    }
+
+    clearMessage();
+
+    // =============================
+    // Loading Overlay
+    // =============================
+
+    overlay.style.display = "flex";
+
+    analyzeBtn.disabled = true;
+
+    analyzeBtn.innerHTML =
+        "<i data-lucide='loader-circle'></i> Analyzing...";
+
+    lucide.createIcons();
+
+    const loadingSteps = [
+
+        "Uploading EEG Dataset...",
+
+        "Reading CSV File...",
+
+        "Scaling EEG Features...",
+
+        "Running Machine Learning Model...",
+
+        "Generating AI Behaviour Report...",
+
+        "Preparing Results..."
+
+    ];
+
+    let currentStep = 0;
+
+    loadingText.textContent = loadingSteps[0];
+
+    const loadingInterval = setInterval(() => {
+
+        currentStep++;
+
+        if (currentStep < loadingSteps.length) {
+
+            loadingText.textContent =
+                loadingSteps[currentStep];
+
+        }
+
+    }, 900);
+
+    try {
+
+        // =============================
+        // Send Request
+        // =============================
+
+        const formData = new FormData(form);
+
+        const response = await fetch("/predict", {
+
+            method: "POST",
+
+            body: formData
+
+        });
+
+        const data = await response.json();
+
+        clearInterval(loadingInterval);
+
+        overlay.style.display = "none";
+
+        analyzeBtn.disabled = false;
+
+        analyzeBtn.innerHTML =
+            '<i data-lucide="activity"></i> Analyze EEG Dataset';
+
+        lucide.createIcons();
+
+        // =============================
+        // Backend Error
+        // =============================
+
+        if (!data.success) {
+
+            showMessage(
+
+                data.error ||
+
+                "Prediction failed.",
+
+                "error"
+
+            );
+
+            return;
+
+        }
+
+        // =============================
+        // Success Message
+        // =============================
+
+        showMessage(
+
+            "Analysis completed successfully.",
+
+            "success"
+
+        );
+
+        // =============================
+        // Show Results
+        // =============================
+
+        const resultsSection =
+            document.getElementById("resultsSection");
+
+        resultsSection.style.display = "block";
+
+        // =============================
+        // Summary Cards
+        // =============================
+
+        document.getElementById("predictionResult").textContent =
+            data.dominant;
+
+        document.getElementById("modelResult").textContent =
+            data.model;
+
+        document.getElementById("accuracyResult").textContent =
+            data.accuracy;
+
+        document.getElementById("datasetResult").textContent =
+            data.filename;
+
+        document.getElementById("reportResult").innerHTML =
+            data.report;
+
+        // =============================
+        // Confidence
+        // =============================
+
+        if (data.confidence) {
+
+            renderConfidence(data.confidence);
+
+        }
+
+        // =============================
+        // Save Prediction
+        // =============================
+
+        saveHistory(data);
+
+        // =============================
+        // Prediction Chart
+        // =============================
+
+        const ctx =
+            document
+            .getElementById("predictionChart")
+            .getContext("2d");
+
+        if (predictionChart) {
+
+            predictionChart.destroy();
+
+        }
+
+        predictionChart = new Chart(ctx, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: data.chart_labels,
+
+                datasets: [
+
+                    {
+
+                        data: data.chart_values,
+
+                        backgroundColor: [
+
+                            "#2563EB",
+
+                            "#10B981",
+
+                            "#F59E0B"
+
+                        ],
+
+                        borderWidth: 2
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom"
+
+                    }
+
+                }
+
+            }
+
+        });
+
+        // =============================
+        // Scroll to Results
+        // =============================
+
+        resultsSection.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+    catch (error) {
+
+        clearInterval(loadingInterval);
+
+        overlay.style.display = "none";
+
+        analyzeBtn.disabled = false;
+
+        analyzeBtn.innerHTML =
+            '<i data-lucide="activity"></i> Analyze EEG Dataset';
+
+        lucide.createIcons();
+
+        console.error(error);
+
+        showMessage(
+
+            "Unable to connect to the server. Please try again.",
+
+            "error"
+
+        );
+
+    }
+
+});
+// ======================================
+// EEG Analyzer
+// Part 4 - Confidence & History
+// ======================================
+
+// =============================
+// Confidence Bars
+// =============================
+
+function renderConfidence(confidence) {
+
+    const container =
+        document.getElementById("confidenceSection");
+
+    container.innerHTML = "";
+
+    Object.entries(confidence).forEach(([label, value]) => {
+
+        container.innerHTML += `
+
+        <div class="confidence-item">
+
+            <div class="confidence-label">
+
+                <span>${label}</span>
+
+                <span>${value}%</span>
+
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-bar"
+
+                     style="width:${value}%">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+// =============================
+// Save Prediction History
+// =============================
+
+function saveHistory(data) {
+
+    let history = JSON.parse(
+
+        localStorage.getItem("predictionHistory")
+
+    ) || [];
+
+    history.unshift({
+
+        prediction: data.dominant,
+
+        model: data.model,
+
+        accuracy: data.accuracy,
+
+        dataset: data.filename,
+
+        date: new Date().toLocaleString()
+
+    });
+
+    // Keep only latest 5 predictions
+
+    history = history.slice(0, 5);
+
+    localStorage.setItem(
+
+        "predictionHistory",
+
+        JSON.stringify(history)
+
+    );
+
+    renderHistory();
+
+}
+
+// =============================
+// Render Prediction History
+// =============================
+
+function renderHistory() {
+
+    const container =
+        document.getElementById("historySection");
+
+    const history = JSON.parse(
+
+        localStorage.getItem("predictionHistory")
+
+    ) || [];
+
+    if (history.length === 0) {
+
+        container.innerHTML =
+
+        "<p>No prediction history available.</p>";
+
+        return;
+
+    }
+
+    container.innerHTML = "";
+
+    history.forEach(item => {
+
+        container.innerHTML += `
+
+        <div class="history-item">
+
+            <h4>
+
+                🧠 ${item.prediction}
+
+            </h4>
+
+            <p>
+
+                📄 ${item.dataset}
+
+            </p>
+
+            <p>
+
+                ⚙️ ${item.model}
+
+            </p>
+
+            <p>
+
+                🎯 Accuracy : ${item.accuracy}
+
+            </p>
+
+            <p>
+
+                🕒 ${item.date}
+
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+// =============================
+// Clear History
+// =============================
+
+document
+
+.getElementById("clearHistoryBtn")
+
+.addEventListener("click", function () {
+
+    localStorage.removeItem(
+
+        "predictionHistory"
+
+    );
+
+    renderHistory();
+
+});
+
+// =============================
+// Load Existing History
+// =============================
+
+renderHistory();
+
+// =============================
+// Refresh Icons
+// =============================
+
+lucide.createIcons();
+
+</script>
+
+</body>
+
+</html>
