@@ -309,7 +309,11 @@ This project is developed for educational and research purposes.
 
 ## 📷 Screenshots
 
-<img width="1287" height="748" alt="image" src="https://github.com/user-attachments/assets/09255565-631e-4458-be4b-9427fc9c2315" />
+<img width="1907" height="1093" alt="image" src="https://github.com/user-attachments/assets/9a827a40-dcce-455b-b56c-77202baf7c7c" />
+<img width="1906" height="1093" alt="image" src="https://github.com/user-attachments/assets/a83ae8e1-bba6-44ee-8458-0e9c2564d279" />
+<img width="1908" height="1005" alt="image" src="https://github.com/user-attachments/assets/ac163124-6bb6-4186-a051-b217230c7b5a" />
+<img width="1906" height="1076" alt="image" src="https://github.com/user-attachments/assets/8e91e11b-9c69-4601-83a6-e0566fa0bb89" />
+
 
 
 Example
