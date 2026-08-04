@@ -1,203 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-
     <title>
         Human Behaviour Analysis Using EEG Signal Analysis
     </title>
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="https://unpkg.com/lucide@latest"></script>
-
 </head>
-
 <body>
 
-<!-- ========================================= -->
 <!-- Loading Overlay -->
-<!-- ========================================= -->
 
 <div id="loadingOverlay"
      class="loading-overlay">
-
     <div class="loader-box">
-
         <div class="loader"></div>
-
         <h2>
-
             Analyzing EEG Dataset...
-
         </h2>
-
         <p id="loadingText">
-
             Uploading dataset...
-
         </p>
-
     </div>
-
 </div>
 
-<!-- ========================================= -->
 <!-- Main Application -->
-<!-- ========================================= -->
 
 <div class="app">
 
-<!-- ========================================= -->
 <!-- Navbar -->
-<!-- ========================================= -->
 
 <nav class="navbar">
-
     <div class="logo">
-
         <i data-lucide="brain-circuit"></i>
-
         <span>
-
             EEG Analyzer
-
         </span>
-
     </div>
-
     <ul class="nav-links">
-
         <li>
-
             <a href="#home">
-
                 Home
-
             </a>
-
         </li>
-
         <li>
-
             <a href="#analysis">
-
                 Analysis
-
             </a>
-
         </li>
-
         <li>
-
             <a href="#workflow">
-
                 How It Works
-
             </a>
-
         </li>
-
         <li>
-
             <a href="#features">
-
                 Features
-
             </a>
-
         </li>
-
     </ul>
-
 </nav>
 
-<!-- ========================================= -->
 <!-- Hero Section -->
-<!-- ========================================= -->
 
 <section class="hero"
          id="home">
-
     <div class="hero-icon">
-
         <i data-lucide="brain-circuit"></i>
-
     </div>
-
     <h1>
-
         Human Behaviour Analysis
-
     </h1>
-
     <h2>
-
         Using EEG Signal Analysis
-
     </h2>
-
     <p>
-
         Upload an EEG dataset, analyze it using machine learning,
         and receive AI-powered behavioural insights instantly.
-
     </p>
-
 </section>
 
-<!-- ========================================= -->
 <!-- Analysis Section -->
-<!-- ========================================= -->
 
 <section class="upload-card"
          id="analysis">
-
 <form id="predictionForm"
       enctype="multipart/form-data">
 
-<!-- ========================================= -->
 <!-- Upload Box -->
-<!-- ========================================= -->
 
 <div class="upload-box">
-
 <div id="dropArea"
      class="drop-area">
-
     <i data-lucide="file-spreadsheet"
        class="drop-icon"></i>
-
     <h3>
-
         Drag & Drop EEG Dataset
-
     </h3>
-
     <p>
-
         or click to browse
-
     </p>
-
     <p class="upload-hint">
-
         Supports:
-
         <strong>.CSV</strong>
-
         files only
-
     </p>
-
     <input
         type="file"
         id="csvFile"
@@ -210,11 +122,8 @@
         type="button"
         id="browseBtn"
         class="upload-btn">
-
         <i data-lucide="upload"></i>
-
         Browse CSV
-
     </button>
 
     <!-- Selected File -->
@@ -222,232 +131,131 @@
     <div id="selectedFile"
          class="selected-file"
          style="display:none;">
-
         <div class="file-info">
-
             <div class="file-row">
-
                 <i data-lucide="file-spreadsheet"
                    class="file-icon"></i>
-
                 <span id="file-name">
-
                     No CSV file selected
-
                 </span>
-
             </div>
-
             <div class="file-meta">
-
                 <span id="file-size"></span>
-
                 <span class="ready-text">
-
                     ✓ Ready for analysis
-
                 </span>
-
             </div>
-
         </div>
-
         <button
             type="button"
             id="removeFile"
             class="remove-file">
-
             ✖
-
         </button>
-
     </div>
 
     <!-- Upload Message -->
 
     <div id="uploadMessage"
          class="upload-message"></div>
-
+</div>
 </div>
 
-</div>
-
-<!-- ========================================= -->
 <!-- Model Selection -->
-<!-- ========================================= -->
 
 <div class="model-box">
-
     <label>
-
         Select Machine Learning Model
-
     </label>
-
     <select
         name="model"
         required>
-
         <option value="Random Forest">
-
             Random Forest (97.04%) ★ Recommended
-
         </option>
-
         <option value="SVM">
-
             Support Vector Machine (94.71%)
-
         </option>
-
         <option value="Logistic Regression">
-
             Logistic Regression (93.66%)
-
         </option>
-
         <option value="KNN">
-
             K-Nearest Neighbors (89.64%)
-
         </option>
-
         <option value="Decision Tree">
-
             Decision Tree (87.53%)
-
         </option>
-
     </select>
-
 </div>
 
-<!-- ========================================= -->
 <!-- Analyze Button -->
-<!-- ========================================= -->
 
 <button
     type="submit"
     id="analyzeBtn"
     class="analyze-btn">
-
     <i data-lucide="activity"></i>
-
     Analyze EEG Dataset
-
 </button>
-
 </form>
-
 {% if error %}
-
 <div class="error-message">
-
     {{ error }}
-
 </div>
-
 {% endif %}
-
 </section>
-<!-- ========================================= -->
+
 <!-- Results Section -->
-<!-- ========================================= -->
 
 <section id="resultsSection"
          class="results-section"
          style="display:none;">
-
     <div class="results-title">
-
         <h2>
-
             Analysis Results
-
         </h2>
-
         <p>
-
             Your EEG dataset has been successfully analyzed.
-
         </p>
-
     </div>
-
-    <!-- ========================================= -->
+    
     <!-- Summary Cards -->
-    <!-- ========================================= -->
 
     <div class="result-grid">
-
         <div class="info-card">
-
             <h4>
-
                 Predicted Behaviour
-
             </h4>
-
             <h3>
-
                 <span class="prediction-badge">
-
                     <span id="predictionResult"></span>
-
                 </span>
-
             </h3>
-
         </div>
-
         <div class="info-card">
-
             <h4>
-
                 Machine Learning Model
-
             </h4>
-
             <h3>
-
                 <span id="modelResult"></span>
-
             </h3>
-
         </div>
-
         <div class="info-card">
-
             <h4>
-
                 Model Accuracy
-
             </h4>
-
             <h3>
-
                 <span class="accuracy-badge">
-
                     <span id="accuracyResult"></span>
-
                 </span>
-
             </h3>
-
         </div>
-
         <div class="info-card">
-
             <h4>
-
                 Dataset
-
             </h4>
-
             <h3>
-
                 <span id="datasetResult"></span>
-
             </h3>
 
         </div>
