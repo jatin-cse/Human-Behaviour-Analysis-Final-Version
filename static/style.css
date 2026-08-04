@@ -537,303 +537,180 @@ body{
 }
 
 .download-btn svg{
-
     width:20px;
-
     height:20px;
-
 }
 
 .download-btn:hover{
-
     background:#1D4ED8;
-
     transform:translateY(-3px);
-
 }
+
 .download-area{
-
     display:flex;
-
     justify-content:center;
-
     gap:20px;
-
     flex-wrap:wrap;
-
     margin-top:35px;
-
 }
-/* 
-            CHART CARD
- */
+/* CHART CARD*/
 
 .chart-card{
-
     margin-top:45px;
-
     background:#ffffff;
-
     border:1px solid #E5E7EB;
-
     border-radius:24px;
-
     padding:35px;
-
     box-shadow:
         0 18px 40px rgba(15,23,42,.05);
-
 }
 
 .chart-card h3{
-
     margin-bottom:25px;
-
     font-size:26px;
-
     color:#111827;
-
 }
 
 .chart-card canvas{
-
     max-height:420px;
-
 }
 
-
-/* 
-            RESPONSIVE
- */
+/* RESPONSIVE*/
 
 @media(max-width:900px){
-
 .result-grid{
-
     grid-template-columns:1fr;
-
 }
 
 .result-card{
-
     padding:28px;
-
 }
 
 .ai-report{
-
     padding:28px;
-
 }
 
 .chart-card{
-
     padding:25px;
-
+}
 }
 
-}
-/* 
-            WHY CHOOSE EEG ANALYZER
- */
+/* WHY CHOOSE EEG ANALYZER*/
 
 .features{
-
     padding:100px 0;
-
 }
 
 .features-grid{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:30px;
-
     margin-top:60px;
-
 }
 
 .feature-card{
-
     background:#ffffff;
-
     border:1px solid #E5E7EB;
-
     border-radius:22px;
-
     padding:35px 28px;
-
     text-align:center;
-
     transition:.35s;
-
     box-shadow:
         0 15px 35px rgba(15,23,42,.04);
-
 }
 
 .feature-card:hover{
-
     transform:translateY(-10px);
-
     border-color:#2563EB;
-
     box-shadow:
         0 25px 50px rgba(37,99,235,.10);
-
 }
 
 .feature-icon{
-
     width:80px;
-
     height:80px;
-
     border-radius:50%;
-
     margin:auto;
-
     background:#EFF6FF;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin-bottom:25px;
-
 }
 
 .feature-icon svg{
-
     width:34px;
-
     height:34px;
-
     stroke:#2563EB;
-
 }
 
 .feature-card h3{
-
     font-size:22px;
-
     color:#111827;
-
     margin-bottom:14px;
-
 }
 
 .feature-card p{
-
     color:#6B7280;
-
     line-height:1.7;
-
     font-size:15px;
-
 }
 
-
-/* 
-                FOOTER
- */
+/* FOOTER*/
 
 .footer{
-
     margin-top:120px;
-
     border-top:1px solid #E5E7EB;
-
     padding:40px 0;
-
     text-align:center;
-
 }
 
 .footer h3{
-
     font-size:24px;
-
     margin-bottom:10px;
-
     color:#111827;
-
 }
 
 .footer p{
-
     color:#6B7280;
-
     font-size:15px;
-
     margin-bottom:12px;
-
 }
 
 .footer small{
-
     color:#9CA3AF;
-
 }
 
-
-/* 
-            SCROLLBAR
- */
+/* SCROLLBAR*/
 
 ::-webkit-scrollbar{
-
     width:10px;
-
 }
 
 ::-webkit-scrollbar-track{
-
     background:#F3F4F6;
-
 }
 
 ::-webkit-scrollbar-thumb{
-
     background:#2563EB;
-
     border-radius:20px;
-
 }
 
 ::-webkit-scrollbar-thumb:hover{
-
     background:#1D4ED8;
-
 }
 
-
-/* 
-            FADE ANIMATION
- */
+/* FADE ANIMATION*/
 
 @keyframes fadeUp{
-
     from{
-
         opacity:0;
-
         transform:translateY(30px);
-
     }
-
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 .hero,
@@ -841,943 +718,557 @@ body{
 .workflow,
 .features,
 .results-section{
-
     animation:fadeUp .8s ease;
-
 }
 
-
-/* 
-            BUTTON ANIMATION
- */
+/* BUTTON ANIMATION*/
 
 .upload-btn,
 .analyze-btn,
 .download-btn{
-
     transition:
         transform .3s,
         box-shadow .3s;
-
 }
 
 .upload-btn:hover,
 .analyze-btn:hover,
 .download-btn:hover{
-
     box-shadow:
         0 15px 35px rgba(37,99,235,.25);
-
 }
 
-
-/* 
-            RESPONSIVE
- */
+/* RESPONSIVE*/
 
 @media(max-width:1200px){
-
 .features-grid{
-
     grid-template-columns:repeat(2,1fr);
-
 }
-
 }
 
 @media(max-width:900px){
-
 .hero h1{
-
     font-size:44px;
-
 }
 
 .hero h2{
-
     font-size:28px;
-
 }
 
 .navbar{
-
     flex-direction:column;
-
     gap:20px;
-
 }
 
 .nav-links{
-
     gap:22px;
-
     flex-wrap:wrap;
-
     justify-content:center;
-
 }
 
 .app{
-
     padding:0 25px;
-
 }
-
 }
 
 @media(max-width:768px){
-
 .features-grid{
-
     grid-template-columns:1fr;
-
 }
 
 .hero{
-
     padding:70px 0 50px;
-
 }
 
 .hero-icon{
-
     width:75px;
-
     height:75px;
-
 }
 
 .hero-icon svg{
-
     width:40px;
-
     height:40px;
-
 }
 
 .hero h1{
-
     font-size:36px;
-
 }
 
 .hero h2{
-
     font-size:24px;
-
 }
 
 .hero p{
-
     font-size:16px;
-
 }
 
 .upload-card{
-
     padding:28px;
-
 }
 
 .upload-btn{
-
     width:100%;
-
 }
 
 .analyze-btn{
-
     width:100%;
-
 }
-
 }
 
 @media(max-width:500px){
-
 .logo{
-
     font-size:22px;
-
 }
 
 .logo svg{
-
     width:26px;
-
     height:26px;
-
 }
 
 .nav-links{
-
     gap:16px;
-
 }
 
 .section-title h2{
-
     font-size:30px;
-
 }
 
 .results-title h2{
-
     font-size:30px;
-
+}
 }
 
-}
-/* 
-   AI Report Styling
- */
+/* AI Report Styling*/
 
 .report-content{
-
     margin-top:30px;
-
     line-height:1.8;
-
     color:#374151;
-
     font-size:17px;
-
 }
 
 .report-content h3{
-
     font-size:34px;
-
     font-weight:700;
-
     color:#0f172a;
-
     margin-top:40px;
-
     margin-bottom:18px;
-
 }
 
 .report-content h3:first-child{
-
     margin-top:0;
-
 }
 
 .report-content p{
-
     margin-bottom:28px;
-
     line-height:1.9;
-
 }
 
 .report-content ul{
-
     margin:18px 0 30px 28px;
-
 }
 
 .report-content li{
-
     margin-bottom:12px;
-
     line-height:1.8;
-
 }
-/* 
-   LOADING OVERLAY
- */
+
+/* LOADING OVERLAY*/
 
 .loading-overlay{
-
     position:fixed;
-
     inset:0;
-
     background:rgba(255,255,255,.92);
-
     backdrop-filter:blur(6px);
-
     display:none;
-
     justify-content:center;
-
     align-items:center;
-
     z-index:9999;
-
     animation:fadeIn .25s ease;
-
 }
 
 .loader-box{
-
     width:420px;
-
     max-width:90%;
-
     background:#fff;
-
     border:1px solid #E5E7EB;
-
     border-radius:20px;
-
     padding:40px;
-
     text-align:center;
-
     box-shadow:0 20px 60px rgba(0,0,0,.08);
-
 }
 
 .loader{
-
     width:70px;
-
     height:70px;
-
     border:6px solid #E5E7EB;
-
     border-top:6px solid #2563EB;
-
     border-radius:50%;
-
     margin:auto;
-
     animation:spin 1s linear infinite;
-
 }
 
 .loader-box h2{
-
     margin-top:30px;
-
     font-size:28px;
-
     color:#111827;
-
 }
 
 .loader-box p{
-
     margin-top:16px;
-
     color:#6B7280;
-
     font-size:17px;
-
     min-height:24px;
-
 }
 
-
-
-/* 
-   RESULT ANIMATION
- */
+/*  RESULT ANIMATION*/
 
 .results-section{
-
     animation:fadeUp .6s ease;
-
 }
 
-
-
-/* 
-   BUTTON LOADING
- */
+/*  BUTTON LOADING*/
 
 .analyze-btn{
-
     transition:.3s;
-
 }
 
 .analyze-btn:disabled{
-
     opacity:.7;
-
     cursor:not-allowed;
-
 }
 
-
-
-/* 
-   REPORT
- */
+/* REPORT*/
 
 .report-content{
-
     animation:fadeUp .8s ease;
-
 }
 
-
-
-/* 
-   CHART
- */
+/*  CHART*/
 
 .chart-card{
-
     animation:fadeUp 1s ease;
-
 }
 
-
-
-/* 
-   INFO CARDS
- */
+/* INFO CARDS*/
 
 .info-card{
-
     transition:.35s;
-
 }
 
 .info-card:hover{
-
     transform:translateY(-6px);
-
     box-shadow:0 15px 40px rgba(37,99,235,.12);
-
 }
 
-
-
-/* 
-   FEATURE CARDS
- */
+/*  FEATURE CARDS*/
 
 .feature-card{
-
     transition:.35s;
-
 }
 
 .feature-card:hover{
-
     transform:translateY(-8px);
-
     box-shadow:0 20px 45px rgba(0,0,0,.08);
-
 }
 
-
-
-/* 
-   UPLOAD BUTTON
- */
+/* UPLOAD BUTTON*/
 
 .upload-btn{
-
     transition:.3s;
-
 }
 
 .upload-btn:hover{
-
     transform:translateY(-2px);
-
 }
 
-
-
-/* 
-   DOWNLOAD BUTTON
- */
+/*  DOWNLOAD BUTTON*/
 
 .download-btn{
-
     transition:.3s;
-
 }
 
 .download-btn:hover{
-
     transform:translateY(-2px);
-
 }
 
-
-
-/* 
-   SCROLLBAR
- */
+/* SCROLLBAR*/
 
 ::-webkit-scrollbar{
-
     width:10px;
-
 }
 
 ::-webkit-scrollbar-thumb{
-
     background:#2563EB;
-
     border-radius:20px;
-
 }
 
 ::-webkit-scrollbar-track{
-
     background:#F3F4F6;
-
 }
 
-
-
-/* 
-   ANIMATIONS
- */
+/*  ANIMATIONS*/
 
 @keyframes spin{
-
     from{
-
         transform:rotate(0deg);
-
     }
-
     to{
-
         transform:rotate(360deg);
-
     }
-
 }
 
 @keyframes fadeUp{
-
     from{
-
         opacity:0;
-
         transform:translateY(25px);
-
     }
-
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 @keyframes fadeIn{
-
     from{
-
         opacity:0;
-
     }
-
     to{
-
         opacity:1;
-
     }
-
 }
-/* 
-   DRAG & DROP
- */
+
+/* DRAG & DROP*/
 
 .drop-area{
-
     border:2px dashed #2563EB;
-
     border-radius:20px;
-
     padding:28px 40px;
-
     text-align:center;
-
     cursor:pointer;
-
     transition:.3s;
-
     background:#F8FAFC;
-
 }
 
 .drop-area:hover{
-
     background:#EFF6FF;
-
 }
 
 .drop-area.dragover{
-
     background:#DBEAFE;
-
     border-color:#1D4ED8;
-
     transform:scale(1.02);
-
 }
 
 .drop-icon{
-
     width:60px;
-
     height:60px;
-
     color:#2563EB;
-
     margin-bottom:15px;
-
 }
 
 .selected-file{
-
     margin-top:20px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     gap:20px;
-
     padding:16px 20px;
-
     background:white;
-
     border:1px solid #E5E7EB;
-
     border-radius:16px;
-
     box-shadow:0 5px 15px rgba(0,0,0,.05);
-
 }
 
 .remove-file{
-
     background:#EF4444;
-
     color:white;
-
     border:none;
-
     border-radius:50%;
-
     width:30px;
-
     height:30px;
-
     cursor:pointer;
-
 }
 
 .remove-file:hover{
-
     background:#DC2626;
-
 }
+
 .upload-hint{
-
     margin-top:10px;
-
     font-size:14px;
-
     color:#6B7280;
-
 }
 
 .upload-hint strong{
-
     color:#2563EB;
-
     font-weight:600;
-
 }
+
 .file-info{
-
     display:flex;
-
     flex-direction:column;
-
     gap:6px;
-
     flex:1;
-
 }
 
 .file-row{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
 }
 
 .file-icon{
-
     width:24px;
-
     height:24px;
-
     color:#2563EB;
-
 }
 
 #file-name{
-
     font-weight:600;
-
     color:#111827;
-
 }
 
 .file-meta{
-
     display:flex;
-
     align-items:center;
-
     gap:15px;
-
     font-size:14px;
-
     color:#6B7280;
-
 }
 
 .ready-text{
-
     color:#10B981;
-
     font-weight:600;
-
 }
 
 /* Confidence */
 
 .confidence-card{
-
     margin-top:35px;
-
     padding:30px;
-
     background:#fff;
-
     border-radius:18px;
-
     box-shadow:0 8px 20px rgba(0,0,0,.08);
-
 }
 
 .confidence-item{
-
     margin-bottom:18px;
-
 }
 
 .confidence-label{
-
     display:flex;
-
     justify-content:space-between;
-
     margin-bottom:8px;
-
     font-weight:600;
-
 }
 
 .progress{
-
     width:100%;
-
     height:10px;
-
     background:#E5E7EB;
-
     border-radius:999px;
-
     overflow:hidden;
-
 }
 
 .progress-bar{
-
     height:100%;
-
     background:#2563EB;
-
     border-radius:999px;
-
     transition:width .8s ease;
-
 }
-
 
 /* History */
 
 .history-card{
-
     margin-top:35px;
-
     padding:30px;
-
     background:#fff;
-
     border-radius:18px;
-
     box-shadow:0 8px 20px rgba(0,0,0,.08);
-
 }
 
 .history-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:20px;
-
 }
 
 .history-item{
-
     padding:15px;
-
     margin-bottom:15px;
-
     border:1px solid #E5E7EB;
-
     border-radius:12px;
-
 }
 
 .history-item h4{
-
     margin-bottom:8px;
-
 }
 
 .history-item p{
-
     color:#6B7280;
-
     font-size:14px;
-
 }
 
 .clear-history{
-
     background:#EF4444;
-
     color:white;
-
     border:none;
-
     padding:8px 16px;
-
     border-radius:8px;
-
     cursor:pointer;
-
 }
+
 .history-card{
-
     margin-top:35px;
-
     padding:25px;
-
     background:#fff;
-
     border-radius:18px;
-
     box-shadow:0 8px 20px rgba(0,0,0,.08);
-
 }
 
 .history-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:20px;
-
 }
 
 .history-header h3{
-
     display:flex;
-
     align-items:center;
-
     gap:8px;
-
 }
 
 .clear-history{
-
     border:none;
-
     background:#EF4444;
-
     color:white;
-
     padding:8px 16px;
-
     border-radius:8px;
-
     cursor:pointer;
-
     transition:.3s;
-
 }
 
 .clear-history:hover{
-
     background:#DC2626;
-
 }
 
 .history-item{
-
     border-left:4px solid #2563EB;
-
     background:#F9FAFB;
-
     padding:15px;
-
     margin-bottom:15px;
-
     border-radius:10px;
-
 }
 
 .history-item h4{
-
     color:#2563EB;
-
     margin-bottom:8px;
-
 }
 
 .history-item p{
-
     margin:4px 0;
-
     color:#6B7280;
-
 }
