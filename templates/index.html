@@ -618,90 +618,50 @@ fileInput.addEventListener("change", function () {
 // Drop File
 
 dropArea.addEventListener("drop", function (e) {
-
     const files = e.dataTransfer.files;
-
     if (!files.length) {
-
         return;
-
     }
-
     const file = files[0];
-
     if (!validateFile(file)) {
-
         return;
-
     }
-
     const dt = new DataTransfer();
-
     dt.items.add(file);
-
     fileInput.files = dt.files;
-
     showFile(file);
-
 });
 
-// =============================
 // Remove File
-// =============================
 
 removeFile.addEventListener("click", function (e) {
-
     e.stopPropagation();
-
     fileInput.value = "";
-
     selectedFile.style.display = "none";
-
     fileName.textContent = "No CSV file selected";
-
     fileSize.textContent = "";
-
     clearMessage();
-
 });
-// ======================================
-// EEG Analyzer
-// Part 3B - AJAX Prediction
-// ======================================
 
-// =============================
+// AJAX Prediction
 // Submit Form
-// =============================
 
 form.addEventListener("submit", async function (e) {
-
     e.preventDefault();
-
-    // =============================
     // Validate Upload
-    // =============================
 
     if (!fileInput.files.length) {
-
         showMessage(
             "Please upload a CSV file first.",
             "error"
         );
-
         return;
-
     }
-
     const file = fileInput.files[0];
-
     if (!validateFile(file)) {
-
         return;
-
     }
-
     clearMessage();
-
     // =============================
     // Loading Overlay
     // =============================
