@@ -481,30 +481,20 @@
     </div>
 </footer>
 
-<!-- ========================================= -->
 <!-- JavaScript -->
-<!-- ========================================= -->
 
 <script>
-    // ======================================
-// EEG Analyzer
-// ======================================
 
-// =============================
+// EEG Analyzer
 // Global Variables
-// =============================
 
 let predictionChart = null;
 
-// =============================
 // Initialize Lucide Icons
-// =============================
 
 lucide.createIcons();
 
-// =============================
 // DOM Elements
-// =============================
 
 const form = document.getElementById("predictionForm");
 const dropArea = document.getElementById("dropArea");
@@ -662,9 +652,8 @@ form.addEventListener("submit", async function (e) {
         return;
     }
     clearMessage();
-    // =============================
+
     // Loading Overlay
-    // =============================
 
     overlay.style.display = "flex";
 
@@ -710,9 +699,7 @@ form.addEventListener("submit", async function (e) {
 
     try {
 
-        // =============================
-        // Send Request
-        // =============================
+        // Send Request to Backend
 
         const formData = new FormData(form);
 
@@ -737,9 +724,7 @@ form.addEventListener("submit", async function (e) {
 
         lucide.createIcons();
 
-        // =============================
         // Backend Error
-        // =============================
 
         if (!data.success) {
 
@@ -757,9 +742,7 @@ form.addEventListener("submit", async function (e) {
 
         }
 
-        // =============================
         // Success Message
-        // =============================
 
         showMessage(
 
@@ -769,18 +752,14 @@ form.addEventListener("submit", async function (e) {
 
         );
 
-        // =============================
         // Show Results
-        // =============================
 
         const resultsSection =
             document.getElementById("resultsSection");
 
         resultsSection.style.display = "block";
 
-        // =============================
         // Summary Cards
-        // =============================
 
         document.getElementById("predictionResult").textContent =
             data.dominant;
@@ -797,26 +776,16 @@ form.addEventListener("submit", async function (e) {
         document.getElementById("reportResult").innerHTML =
             data.report;
 
-        // =============================
-        // Confidence
-        // =============================
+        // Confidence Bars
 
         if (data.confidence) {
 
             renderConfidence(data.confidence);
 
         }
-
-        // =============================
-        // Save Prediction
-        // =============================
-
+        // Save Prediction History
         saveHistory(data);
-
-        // =============================
         // Prediction Chart
-        // =============================
-
         const ctx =
             document
             .getElementById("predictionChart")
@@ -878,9 +847,7 @@ form.addEventListener("submit", async function (e) {
 
         });
 
-        // =============================
         // Scroll to Results
-        // =============================
 
         resultsSection.scrollIntoView({
 
@@ -916,14 +883,8 @@ form.addEventListener("submit", async function (e) {
     }
 
 });
-// ======================================
-// EEG Analyzer
-// Part 4 - Confidence & History
-// ======================================
 
-// =============================
 // Confidence Bars
-// =============================
 
 function renderConfidence(confidence) {
 
@@ -964,9 +925,7 @@ function renderConfidence(confidence) {
 
 }
 
-// =============================
 // Save Prediction History
-// =============================
 
 function saveHistory(data) {
 
@@ -1006,9 +965,7 @@ function saveHistory(data) {
 
 }
 
-// =============================
 // Render Prediction History
-// =============================
 
 function renderHistory() {
 
@@ -1077,9 +1034,7 @@ function renderHistory() {
 
 }
 
-// =============================
 // Clear History
-// =============================
 
 document
 
@@ -1097,15 +1052,11 @@ document
 
 });
 
-// =============================
 // Load Existing History
-// =============================
 
 renderHistory();
 
-// =============================
 // Refresh Icons
-// =============================
 
 lucide.createIcons();
 
